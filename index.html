@@ -2,6 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  
+  <!-- ESSA LINHA É O SEGREDO DO MOBILE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Quer casar cmg?</title>
 
   <style>
@@ -18,34 +22,38 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      padding: 20px;
     }
 
     .card {
       background: white;
-      padding: 40px;
+      padding: 30px 20px;
       border-radius: 20px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 350px;
       position: relative;
-      width: 300px;
     }
 
     h1 {
-      margin-bottom: 30px;
+      font-size: 22px;
+      margin-bottom: 25px;
       color: #333;
     }
 
     .botoes {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      flex-direction: column; /* empilha no celular */
+      gap: 15px;
     }
 
     button {
-      padding: 12px 25px;
-      font-size: 16px;
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
     }
@@ -55,9 +63,8 @@
       color: white;
     }
 
-    #sim:hover {
-      transform: scale(1.1);
-      background-color: #45a049;
+    #sim:active {
+      transform: scale(0.95);
     }
 
     #nao {
@@ -66,14 +73,22 @@
       position: absolute;
     }
 
-    #nao:hover {
-      transform: scale(1.05);
-    }
-
     .mensagem {
       margin-top: 20px;
       font-size: 18px;
       color: #444;
+      min-height: 24px;
+    }
+
+    /* MELHORIAS PRA TELAS MAIORES */
+    @media (min-width: 500px) {
+      .botoes {
+        flex-direction: row;
+      }
+
+      button {
+        width: auto;
+      }
     }
   </style>
 </head>
@@ -85,7 +100,7 @@
 
     <div class="botoes">
       <button id="sim" onclick="aceitou()">Sim 💖</button>
-      <button id="nao" onmouseover="fugir()">Não 😢</button>
+      <button id="nao" ontouchstart="fugir()" onmouseover="fugir()">Não 😢</button>
     </div>
 
     <div class="mensagem" id="msg"></div>
@@ -93,16 +108,15 @@
 
   <script>
     function aceitou() {
-      document.getElementById("msg").innerText = "Eu sabia que você ia dizer sim 😍💍";
+      document.getElementById("msg").innerText = "Eu sabia 😍💍";
     }
 
     function fugir() {
       const botao = document.getElementById("nao");
-
       const card = document.querySelector(".card");
 
-      const largura = card.clientWidth - 80;
-      const altura = card.clientHeight - 40;
+      const largura = card.clientWidth - 100;
+      const altura = card.clientHeight - 50;
 
       const x = Math.random() * largura;
       const y = Math.random() * altura;
