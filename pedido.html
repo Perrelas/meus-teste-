@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quer casar cmg?</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #sim {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #sim:hover {
+      transform: scale(1.1);
+      background-color: #45a049;
+    }
+
+    #nao {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    #nao:hover {
+      transform: scale(1.05);
+    }
+
+    .mensagem {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Quer casar cmg? 💍</h1>
+
+    <div class="botoes">
+      <button id="sim" onclick="aceitou()">Sim 💖</button>
+      <button id="nao" onmouseover="fugir()">Não 😢</button>
+    </div>
+
+    <div class="mensagem" id="msg"></div>
+  </div>
+
+  <script>
+    function aceitou() {
+      document.getElementById("msg").innerText = "Eu sabia que você ia dizer sim 😍💍";
+    }
+
+    function fugir() {
+      const botao = document.getElementById("nao");
+
+      const card = document.querySelector(".card");
+
+      const largura = card.clientWidth - 80;
+      const altura = card.clientHeight - 40;
+
+      const x = Math.random() * largura;
+      const y = Math.random() * altura;
+
+      botao.style.left = x + "px";
+      botao.style.top = y + "px";
+    }
+  </script>
+
+</body>
+</html>
